@@ -23,7 +23,7 @@ export function CartContextProvider({children}){
         else {
             ls?.setItem('cart', JSON.stringify([])); // Ensure cart is cleared in storage if empty
         }
-    },[cartProducts]);
+    },[cartProducts,ls]);
 
     function addProduct(productId){
         setCartProducts(prev => [ ...prev,productId]);

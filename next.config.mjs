@@ -4,6 +4,9 @@ const nextConfig = {
   compiler:{
     styledComponents: true,
   },
+  images: {
+    domains: ['devkakadia-ecommerce.s3.amazonaws.com'],
+  },
 };
 
 export default nextConfig;

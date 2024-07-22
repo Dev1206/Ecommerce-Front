@@ -9,6 +9,7 @@ import { useContext } from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 import styled from "styled-components";
+import Image from 'next/image';
 
 const ColumnsWrapper = styled.div`
     display: grid;
@@ -93,7 +94,7 @@ export default function CartPage() {
           setIsSuccess(true);
           clearCart();
         }
-      }, []);
+      }, [clearCart]);
 
     function moreOfThisProduct(id){
         addProduct(id);
@@ -167,10 +168,12 @@ export default function CartPage() {
 
                         <tbody> 
                             {products.map(product => (
-                                <tr>
+                                <tr key={product._id}>
                                     <ProductInfoCell>
                                         <ProductImageBox>
-                                            <img src={product.images[0]} />
+                                            
+                                            <Image src={product.images[0]} alt={product.title} width={80} height={80} />   {/* <img src={product.images[0]} /> */}
+                                            
                                         </ProductImageBox>
                                         {product.title}
                                     </ProductInfoCell>

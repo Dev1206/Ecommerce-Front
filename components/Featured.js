@@ -5,6 +5,7 @@ import ButtonLink from "./ButtonLink";
 import CartIcon from "@/components/icons/CartIcon";
 import { useContext } from "react";
 import { CartContext } from "./CartContext";
+import Image from 'next/image';
 
 const Bg = styled.div`
     background-color: #222;  
@@ -63,6 +64,16 @@ const ButtonsWrapper = styled.div`
 
 `;
 
+const ImageWrapper = styled.div`
+    max-width: 100%;
+    max-height: 200px;
+    display: block;
+    margin: 0 auto;
+    @media screen and (min-width: 768px) {
+        max-width: 100%;
+    }
+`;
+
 export default function Featured({product}){
     const {addProduct} = useContext(CartContext);
     function addFeaturedToCart(){
@@ -83,7 +94,10 @@ export default function Featured({product}){
                 </div>
                 </Column>
                 <Column>
-                    <img src="https://devkakadia-ecommerce.s3.amazonaws.com/1721222940262.png"></img>
+                    <ImageWrapper>
+                        <Image src="https://devkakadia-ecommerce.s3.amazonaws.com/1721222940262.png" alt={product.title} layout="responsive" width={500} height={500} />
+                        {/* <img src="https://devkakadia-ecommerce.s3.amazonaws.com/1721222940262.png"></img> */}
+                    </ImageWrapper>
                 </Column>
             </ColumnsWrapper>
             </Center>
