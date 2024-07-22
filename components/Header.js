@@ -34,11 +34,7 @@ const NavLinks = styled(Link)`
 `;
 
 const StyledNav = styled.nav`
-    ${props => props.mobileNavActive ? `
-    display: block;
-  ` : `
-    display: none;
-  `}
+    ${props => props.mobileNavActive ? `display: block;` : `display: none;`}
     gap: 15px;
     position :fixed;
     top:0px;
@@ -80,7 +76,6 @@ export default function Header(){
                 <StyledNav mobileNavActive={mobileNavActive}>
                     <NavLinks href={'/'}>Home</NavLinks>
                     <NavLinks href={'/products'}>All Products</NavLinks>
-                    {/* <NavLinks href={'/categories'}>Categories</NavLinks> */}
                     <NavLinks href={'/account'}>Account</NavLinks>
                     <NavLinks href={'/cart'}>Cart ({cartProducts.length})</NavLinks>
                 </StyledNav>

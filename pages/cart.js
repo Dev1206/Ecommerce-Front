@@ -73,28 +73,27 @@ export default function CartPage() {
     const [city, setCity] = useState('');
     const [postalCode, setPostalCode] = useState('');
     const [country, setCountry] = useState('');
-    const [isSuccessPage, setIsSuccessPage] = useState(false);
+    const [isSuccess,setIsSuccess] = useState(false);
 
-    useEffect(() => {
-        if (window && window.location.href.includes('success')) {
-            setIsSuccessPage(true);
-        }
-    }, []);
     
     useEffect(() =>{
         if(cartProducts.length >0){
-            axios.post('/api/cart', {ids:cartProducts}).then(response => {setProducts(response.data)})
+            axios.post('/api/cart', {ids:cartProducts}).then(response => {setProducts(response.data);})
         }
         else{
             setProducts([]);
         }
     },[cartProducts]);
-
-    useEffect(() =>{
-        if (isSuccessPage){
-            clearCart();
+    
+    useEffect(() => {
+        if (typeof window === 'undefined') {
+          return;
         }
-    },[isSuccessPage, clearCart]);
+        if (window?.location.href.includes('success')) {
+          setIsSuccess(true);
+          clearCart();
+        }
+      }, []);
 
     function moreOfThisProduct(id){
         addProduct(id);
@@ -128,7 +127,7 @@ export default function CartPage() {
         }
     }
 
-    if (isSuccessPage){
+    if (isSuccess){
         return (
             <>
                 <Header/>

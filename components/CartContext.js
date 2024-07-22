@@ -1,8 +1,6 @@
-import { set } from "mongoose";
 import { useState } from "react";
 import { useEffect } from "react";
-
-const { createContext } = require("react");
+import { createContext } from "react";
 
 export const CartContext = createContext({});
 
@@ -12,17 +10,21 @@ export function CartContextProvider({children}){
 
     const [cartProducts,setCartProducts] = useState([]);
     
+    // useEffect(()=> {
+    //     if (ls && ls.getItem('cart')) {
+    //         setCartProducts(JSON.parse(ls.getItem('cart')));
+    //     }
+    // },[]);
+    
     useEffect(() =>{
         if(cartProducts?.length >0 ){
             ls?.setItem('cart', JSON.stringify(cartProducts));
         }
+        else {
+            ls?.setItem('cart', JSON.stringify([])); // Ensure cart is cleared in storage if empty
+        }
     },[cartProducts]);
 
-    useEffect(()=> {
-        if (ls && ls.getItem('cart')) {
-            setCartProducts(JSON.parse(ls.getItem('cart')));
-        }
-    },[]);
     function addProduct(productId){
         setCartProducts(prev => [ ...prev,productId]);
     }
